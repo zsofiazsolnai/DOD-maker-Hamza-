@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "DoDList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DoDList</h2>
+
+<form action="/action_page.php">
+    <table width="1000">
+        <caption> <h4> DoDs </h4> </caption>
+        <tr>
+            <th> Name </th>
+            <th> Desc </th>
+            <th> </th>
+            <th> Name </th>
+            <th> Desc </th>
+        </tr>
+        <tr>
+
+            <td>
+                @{ foreach (var dod in ViewBag.Example)
+                    {
+
+                        <input type="checkbox" name="DoD" value="@dod"> @dod <br>
+                    }
+                }
+            </td>
+            <td></td>
+            @*<td>
+                    <input type="submit" value="add" formaction="href=DoDList/own" />
+                </td>
+                <td> <a name="own"> </a></td>*@
+        </tr>
+    </table>
+</form>
+
+
+
+
+

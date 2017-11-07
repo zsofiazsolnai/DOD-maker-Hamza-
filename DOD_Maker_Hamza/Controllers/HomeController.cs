@@ -26,5 +26,11 @@ namespace DOD_Maker_Hamza.Controllers
 
             return View();
         }
+
+        public ActionResult DoDList()
+        {
+            ViewBag.Example = new List<string> { "Random", "String", "Another", "wooh", "the last" };
+            return View();
+        }
     }
 }

@@ -3,7 +3,7 @@
     ViewBag.Title = "DoDList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-  <form id="form1">
+  <form id="form1" style="background-color:wheat">
     <script>
         function allowDrop(ev)
         {
@@ -22,11 +22,11 @@
             ev.target.appendChild(document.getElementById(data));
         }
      </script>
-      <table>
+      <table align="center">
           <caption>
               <h2>DoD List</h2>
-              <pre> You can drag and drop the DoDs you would like to have in your own list.
-          Drop them back, if they are not needed. </pre>
+              <p> You can drag and drop the DoDs you would like to have in your own list.
+                    Drop them back, if they are not needed. </p>
           </caption>
     <div>
         <tr>

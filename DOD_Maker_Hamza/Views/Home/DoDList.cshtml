@@ -3,37 +3,58 @@
     ViewBag.Title = "DoDList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+  <form id="form1">
+    <script>
+        function allowDrop(ev)
+        {
+             ev.preventDefault();
+         }
 
-<h2>DoDList</h2>
+        function drag(ev)
+        {
+             ev.dataTransfer.setData("text", ev.target.id);
+         }
 
-<form action="/action_page.php">
-    <table width="1000">
-        <caption> <h4> DoDs </h4> </caption>
+        function drop(ev)
+        {
+             ev.preventDefault();
+             var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+     </script>
+      <table>
+          <caption>
+              <h2>DoD List</h2>
+              <pre> You can drag and drop the DoDs you would like to have in your own list.
+          Drop them back, if they are not needed. </pre>
+          </caption>
+    <div>
         <tr>
-            <th> Name </th>
-            <th> Desc </th>
-            <th> </th>
-            <th> Name </th>
-            <th> Desc </th>
+            <th>Basic DoDs</th>
+            <th> My DoDs </th>
         </tr>
         <tr>
-
-            <td>
-                @{ foreach (var dod in ViewBag.Example)
+            <td><select id="ListBox1" style="height:358px ; width: 233px" size="6" ondrop="add/drop(event)" ondragover="allowDrop(event)">
+                @{
+                    int i = 0;
+                    foreach (var elem in ViewBag.Example)
                     {
-
-                        <input type="checkbox" name="DoD" value="@dod"> @dod <br>
+                        <option id="@i" draggable="true" ondragstart="drag(event)"> @elem  </option>
+                        i++;
                     }
                 }
+                 </select>
             </td>
-            <td></td>
-            @*<td>
-                    <input type="submit" value="add" formaction="href=DoDList/own" />
-                </td>
-                <td> <a name="own"> </a></td>*@
+            <td><select id="ListBox2" style="height:358px ; width: 233px" size="6" ondrop="drop(event)" ondragover="allowDrop(event)">
+                </select>
+            </td>
         </tr>
-    </table>
-</form>
+     </div>
+   </table>
+ </form>
+
+
+
 
 
 

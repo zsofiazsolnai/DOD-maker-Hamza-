@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "DoDList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  <form id="form1" style="background-color:wheat">
+    <script>
+        function allowDrop(ev)
+        {
+             ev.preventDefault();
+         }
+
+        function drag(ev)
+        {
+             ev.dataTransfer.setData("text", ev.target.id);
+         }
+
+        function drop(ev)
+        {
+             ev.preventDefault();
+             var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+     </script>
+      <table align="center">
+          <caption>
+              <h2>DoD Template List</h2>
+              <p> You can drag and drop the DoD templates you would like to have in your own list.
+                    Drop them back, if they are not needed. </p>
+          </caption>
+    <div>
+        <tr>
+            <th>Basic DoD templates</th>
+            <th></th>
+            <th> My DoD templates </th>
+        </tr>
+        <tr>
+            <td><select id="ListBox1" style="height:358px ; width: 233px" size="6" ondrop="add/drop(event)" ondragover="allowDrop(event)">
+                @{
+                    int i = 0;
+                    foreach (var elem in ViewBag.Example)
+                    {
+                        <option id="@i" draggable="true" ondragstart="drag(event)"> @elem  </option>
+                        i++;
+                    }
+                }
+                 </select>
+            </td>
+            <td style="width:118px"></td>
+            <td><select id="ListBox2" style="height:358px ; width: 233px" size="6" ondrop="drop(event)" ondragover="allowDrop(event)">
+                </select>
+            </td>
+        </tr>
+     </div>
+   </table>
+ </form>
+
+
+
+
+
+
+
+

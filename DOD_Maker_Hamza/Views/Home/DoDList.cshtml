@@ -26,8 +26,23 @@
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
             var nodeCopy = document.getElementById(data).cloneNode(true);
-            nodeCopy.id = "newId";
+            nodeCopy.id = x;
             ev.target.appendChild(nodeCopy);
+        }
+
+        function copyOnClick() {
+            var x = document.getElementById("ListBox1").selectedIndex;
+            var nodeCopy = document.getElementById(x).cloneNode(true);
+            nodeCopy.id = x;
+            document.getElementById("ListBox2").appendChild(nodeCopy);
+        }
+
+        function removeOnClick() {
+            var x = document.getElementById("ListBox2");
+            x.remove(x.selectedIndex);
+            //var y = douc
+            //var el = document.getElementById(x);
+            //el.parentNode.removeChild(el);
         }
 
      </script>
@@ -37,14 +52,15 @@
               <p> You can drag and drop the DoD templates you would like to have in your own list.
                     Drop them back, if they are not needed. </p>
           </caption>
-    <div>
+
         <tr>
             <th>Basic DoD templates</th>
             <th></th>
             <th> My DoD templates </th>
         </tr>
         <tr>
-            <td><select id="ListBox1" style="height:358px ; width: 233px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+            <td>
+                <select id="ListBox1" style="height:358px ; width: 233px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
                 @{
                     int i = 0;
                     foreach (var elem in ViewBag.Example)
@@ -55,12 +71,15 @@
                 }
                  </select>
             </td>
-            <td style="width:118px"></td>
-            <td><select id="ListBox2" style="height:358px ; width: 233px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)">
-                </select>
+            <td style="width:118px">
+                <input type="button" id="copyItem" value="Select" onclick="copyOnClick()"/>
+                <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />
+            </td>
+
+            <td>
+                <select id="ListBox2" style="height:358px ; width: 233px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)"/>
             </td>
         </tr>
-     </div>
    </table>
  </form>
 

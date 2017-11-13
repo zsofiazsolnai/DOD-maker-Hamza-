@@ -29,7 +29,8 @@ namespace DOD_Maker_Hamza.Controllers
 
         public ActionResult DoDList()
         {
-            ViewBag.Example = new List<string> { "Random", "String", "Another", "wooh", "the last" };
+            ViewBag.Exists = new List<int> ();
+            ViewBag.Example = new List<string> { "first","second","third","fourth","fifth","sixth","seventh","eigth"};
             return View();
         }
     }

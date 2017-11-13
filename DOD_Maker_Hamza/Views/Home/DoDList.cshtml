@@ -5,6 +5,7 @@
 }
   <form id="form1" style="background-color:wheat">
     <script>
+        var exists = [] ;
         function allowDrop(ev)
         {
              ev.preventDefault();
@@ -17,17 +18,32 @@
 
         function dropDelete(ev) {
             ev.preventDefault();
-            var data = ev.dataTransfer.getData("Text");
-            var el = document.getElementById(data);
+            var x = ev.dataTransfer.getData("text");
+            var index = exists.indexOf(x);
+            exists.splice(index, 1);
+            var el = document.getElementById(x);
             el.parentNode.removeChild(el);
+
         }
 
         function dropCopy(ev) {
             ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var nodeCopy = document.getElementById(data).cloneNode(true);
-            nodeCopy.id = x;
-            ev.target.appendChild(nodeCopy);
+            var x = ev.dataTransfer.getData("text");
+            if (exists.includes(x)) {
+                alert("You already added this template!"); 
+            }
+            else { 
+                var nodeCopy = document.getElementById(x).cloneNode(true);
+                nodeCopy.id = "newId";
+                exists.push(x);
+                ev.target.appendChild(nodeCopy);
+            }
+
+            //ev.preventDefault();
+            //var data = ev.dataTransfer.getData("text");
+            //var nodeCopy = document.getElementById(data).cloneNode(true);
+            //nodeCopy.id = "newId";
+            //ev.target.appendChild(nodeCopy);
         }
 
         function copyOnClick() {
@@ -71,9 +87,9 @@
                 }
                  </select>
             </td>
-            <td style="width:118px">
-                <input type="button" id="copyItem" value="Select" onclick="copyOnClick()"/>
-                <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />
+            <td style="width:118px;">
+                <input type="button"  id="copyItem" value="Select" onclick="copyOnClick()"/> 
+                <input type="button"  id="copyItem" value="Remove" onclick="removeOnClick()" />
             </td>
 
             <td>

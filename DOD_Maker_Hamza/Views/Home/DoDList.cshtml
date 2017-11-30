@@ -1,4 +1,4 @@
-﻿
+﻿<link rel="stylesheet" href="~/Content/Site.css" type="text/css">
 @{
     ViewBag.Title = "DoDList";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,24 +26,76 @@
 
         }
 
+        function param(ev, nodeCopy) {
+            var modal = document.getElementById('myModalP');
+            var span = document.getElementById('par');
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+                ev.target.appendChild(nodeCopy);
+            }
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+
+        function rad(ev, nodeCopy) {
+            var modal = document.getElementById('myModalM');
+            var span = document.getElementById('rad');
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+                ev.target.appendChild(nodeCopy);
+            }
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+
+        function opt(ev, nodeCopy) {
+            var modal = document.getElementById('myModalO');
+            var span = document.getElementById('opt');
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+                ev.target.appendChild(nodeCopy);
+            }
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+
         function dropCopy(ev) {
             ev.preventDefault();
             var x = ev.dataTransfer.getData("text");
             if (exists.includes(x)) {
                 alert("You already added this template!"); 
             }
-            else { 
+            else {
                 var nodeCopy = document.getElementById(x).cloneNode(true);
                 nodeCopy.id = "newId";
                 exists.push(x);
-                ev.target.appendChild(nodeCopy);
+                if (nodeCopy.textContent.endsWith('<parameter>', nodeCopy.textContent.length - 2)) {
+                    param(ev, nodeCopy);
+                }
+                else
+                    if (nodeCopy.textContent.endsWith('(multiplechoice)', nodeCopy.textContent.length - 2)) {
+                        rad(ev, nodeCopy);
+                    }
+                    else
+                        if (nodeCopy.textContent.endsWith('[option]', nodeCopy.textContent.length - 2)) {
+                            opt(ev, nodeCopy);
+                        }
+                        else {
+                            ev.target.appendChild(nodeCopy);
+                        }
             }
-
-            //ev.preventDefault();
-            //var data = ev.dataTransfer.getData("text");
-            //var nodeCopy = document.getElementById(data).cloneNode(true);
-            //nodeCopy.id = "newId";
-            //ev.target.appendChild(nodeCopy);
         }
 
         function copyOnClick() {
@@ -56,12 +108,39 @@
         function removeOnClick() {
             var x = document.getElementById("ListBox2");
             x.remove(x.selectedIndex);
-            //var y = douc
-            //var el = document.getElementById(x);
-            //el.parentNode.removeChild(el);
         }
 
      </script>
+
+      <div id="myModalP" class="modal">
+      <div class="modal-content">
+          <span class="close" id="par"> Accept </span>
+          <p>
+              Add the parameter:  <input type="text" id="param" />
+          </p>
+      </div>
+      </div>
+
+      <div id="myModalM" class="modal">
+          <div class="modal-content">
+              <span class="close" id="rad"> Accept </span>
+              <p>
+                  Choose on option:  <input type="radio" id="rad" name="ch" /> option 1
+                  <input type="radio" id="rad" name="ch" /> option 2
+                  <input type="radio" id="rad" name="ch" /> option 3
+              </p>
+          </div>
+      </div>
+
+      <div id="myModalO" class="modal">
+          <div class="modal-content" id="opt">
+              <span class="close"> Accept </span>
+              <p>
+                  Do you want this feature or not? :  <input type="checkbox" id="check" /> Feature
+              </p>
+          </div>
+      </div>
+
       <table align="center">
           <caption>
               <h2>DoD Template List</h2>

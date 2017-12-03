@@ -27,6 +27,13 @@ namespace DOD_Maker_Hamza.Controllers
             return View();
         }
 
+        public ActionResult Help()
+        {
+            ViewBag.Message = "Your help guide.";
+
+            return View();
+        }
+
         public ActionResult DoDList()
         {
             ViewBag.Exists = new List<int>();

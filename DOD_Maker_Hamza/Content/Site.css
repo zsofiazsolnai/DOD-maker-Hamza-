@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: blue;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,11 +27,9 @@ textarea {
 
 /*footer*/
 
-.container{
-    text-align: center;
-    background: green;
-}
 
+
+/*css DODList*/
 .modal {
     display: none;
     position: absolute;
@@ -65,3 +63,53 @@ textarea {
         cursor: pointer;
     }
 
+
+
+.list {
+    width: 100%;
+    padding: 16px 20px;
+    border: groove;
+    border-color: darkgray;
+    border-radius: 6px;
+    background-color: white;
+
+
+}
+
+/*css navbar*/
+
+ul {
+    list-style-type: none;
+    margin-top: -40px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #111130;
+    
+}
+
+li {
+    float: left;
+    text-decoration: none;
+}
+
+li a {
+    display: block;
+    color:black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #0C0C25;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: #2b2727;
+   text-align: center;
+   padding-bottom: 30px;
+}

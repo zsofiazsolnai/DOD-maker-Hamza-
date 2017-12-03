@@ -1,9 +1,10 @@
 ﻿<link rel="stylesheet" href="~/Content/Site.css" type="text/css">
+
 @{
     ViewBag.Title = "DoDList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-  <form id="form1" style="background-color:wheat">
+  <form id="form1" style="background-color: #F5F5F5">
     <script>
         var exists = [] ;
         function allowDrop(ev)
@@ -23,15 +24,15 @@
             exists.splice(index, 1);
             var el = document.getElementById(x);
             el.parentNode.removeChild(el);
-
         }
 
-        function param(ev, nodeCopy) {
+        function param(ev, x, nodeCopy) {
             var modal = document.getElementById('myModalP');
             var span = document.getElementById('par');
             modal.style.display = "block";
             span.onclick = function () {
                 modal.style.display = "none";
+                exists.push(x);
                 ev.target.appendChild(nodeCopy);
             }
             window.onclick = function (event) {
@@ -41,12 +42,13 @@
             }
         }
 
-        function rad(ev, nodeCopy) {
+        function rad(ev, x, nodeCopy) {
             var modal = document.getElementById('myModalM');
             var span = document.getElementById('rad');
             modal.style.display = "block";
             span.onclick = function () {
                 modal.style.display = "none";
+                exists.push(x);
                 ev.target.appendChild(nodeCopy);
             }
             window.onclick = function (event) {
@@ -56,12 +58,13 @@
             }
         }
 
-        function opt(ev, nodeCopy) {
+        function opt(ev, x,nodeCopy) {
             var modal = document.getElementById('myModalO');
             var span = document.getElementById('opt');
             modal.style.display = "block";
             span.onclick = function () {
                 modal.style.display = "none";
+                exists.push(x);
                 ev.target.appendChild(nodeCopy);
             }
             window.onclick = function (event) {
@@ -79,18 +82,18 @@
             }
             else {
                 var nodeCopy = document.getElementById(x).cloneNode(true);
+                var name = nodeCopy.textContent;
                 nodeCopy.id = "newId";
-                exists.push(x);
-                if (nodeCopy.textContent.endsWith('<parameter>', nodeCopy.textContent.length - 2)) {
-                    param(ev, nodeCopy);
+                if (name.endsWith('<parameter>', name.length - 2)) {
+                    param(ev, x, nodeCopy);
                 }
                 else
-                    if (nodeCopy.textContent.endsWith('(multiplechoice)', nodeCopy.textContent.length - 2)) {
-                        rad(ev, nodeCopy);
+                    if (name.endsWith('(multiplechoice)',name.length - 2)) {
+                        rad(ev, x, nodeCopy);
                     }
                     else
-                        if (nodeCopy.textContent.endsWith('[option]', nodeCopy.textContent.length - 2)) {
-                            opt(ev, nodeCopy);
+                        if (name.endsWith('[option]', name.length - 2)) {
+                            opt(ev, x, nodeCopy);
                         }
                         else {
                             ev.target.appendChild(nodeCopy);
@@ -116,7 +119,7 @@
       <div class="modal-content">
           <span class="close" id="par"> Accept </span>
           <p>
-              Add the parameter:  <input type="text" id="param" />
+              Add the parameter:  <input type="text" id="parameter" />
           </p>
       </div>
       </div>
@@ -125,7 +128,7 @@
           <div class="modal-content">
               <span class="close" id="rad"> Accept </span>
               <p>
-                  Choose on option:  <input type="radio" id="rad" name="ch" /> option 1
+                  Choose on option:  <input type="radio" id="rad" name="option" /> option 1
                   <input type="radio" id="rad" name="ch" /> option 2
                   <input type="radio" id="rad" name="ch" /> option 3
               </p>
@@ -144,8 +147,7 @@
       <table align="center">
           <caption>
               <h2>DoD Template List</h2>
-              <p> You can drag and drop the DoD templates you would like to have in your own list.
-                    Drop them back, if they are not needed. </p>
+              
           </caption>
 
         <tr>
@@ -155,7 +157,7 @@
         </tr>
         <tr>
             <td>
-                <select id="ListBox1" style="height:358px ; width: 233px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+                <select id="ListBox1" class="list" style="height:340px ; width: 300px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
                 @{
                     int i = 0;
                     foreach (var elem in ViewBag.Example)
@@ -167,12 +169,12 @@
                  </select>
             </td>
             <td style="width:118px;">
-                <input type="button"  id="copyItem" value="Select" onclick="copyOnClick()"/> 
-                <input type="button"  id="copyItem" value="Remove" onclick="removeOnClick()" />
+                <input type="button" id="copyItem" value="Select" onclick="copyOnClick()" /> 
+                <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />      
             </td>
 
             <td>
-                <select id="ListBox2" style="height:358px ; width: 233px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)"/>
+                <select id="ListBox2" class="list" style="height:340px ; width: 300px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)"/>
             </td>
         </tr>
    </table>

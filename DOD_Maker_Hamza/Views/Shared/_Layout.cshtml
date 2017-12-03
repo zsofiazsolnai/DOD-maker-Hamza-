@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="~/Content/Site.css" type="text/css">
+    <title> DoD Maker - Hamza's group  </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+<<<<<<< HEAD
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,21 +18,32 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("DoD Maker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" >
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+=======
+    <div>
+        <div>
+            
+            <div>
+                <ul>
+                    <li>@Html.ActionLink("Home", "DoDList", "Contact", "Help")</li>
+                    <li>@Html.ActionLink("About", "About", "Help", "Home")</li>
+                    <li>@Html.ActionLink("Help", "Help", "Index", "Contact")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", "Index")</li>
+>>>>>>> 1500d9d46b7ecccf5b28d05bd53173852055c9f0
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="footer">
         @RenderBody()
         <hr />
-        <footer>
+        <footer >
             <p>&copy; @DateTime.Now.Year - DoD Maker - Hamza's group</p>
         </footer>
     </div>

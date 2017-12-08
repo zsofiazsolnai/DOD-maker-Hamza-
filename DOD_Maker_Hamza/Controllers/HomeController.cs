@@ -36,9 +36,16 @@ namespace DOD_Maker_Hamza.Controllers
 
         public ActionResult DoDList()
         {
-            ViewBag.Exists = new List<int>();
-            ViewBag.Example = new List<string> { "Basic DoD (multiplechoice)", "Basic DoD <parameter>", "Basic DoD #3", "Basic DoD #4",
-                                                "Basic  DoD #5 [option]","Basic DoD #6","Basic DoD #7","Basic DoD #8"};
+            ViewBag.Example = new List<string> { "All (subtasks|TODO items) are done",
+                                                 "đTests are passing ",
+                                                 "*All code has unit tests",
+                                                 "Tasks describing identified technical debt are added ",
+                                                 "ä Code| scripts committed to the repository",
+                                                 "Code has been reviewed by łdev.  and all suggestions  has been introduced.",
+                                                 "Basic DoD <>",
+                                                 "Basic DoD []",
+                                                 "Basic DoD #8",
+                                                 "Basic DoD #9"};
             return View();
         }
     }

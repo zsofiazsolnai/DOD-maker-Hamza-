@@ -1,53 +1,30 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-
+﻿
+p {
+    color: black;
+    text-align:center;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+adress {
+    color: black;
+    text-align: center;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-
-/*footer*/
-
-
-
-/*css DODList*/
 .modal {
-    display: none;
     position: absolute;
     left: 400px;
-    top: 200px;
-    z-index: 1;
-    width: 40%;
-    height: 50%;
-    overflow: auto;
-    background-color: rgba(10,15,95,0.2);
+    top: 100px;
+    z-index: 3;
+    width: 50%;
+    height: 60%;
+    overflow:auto;
+    background-color: rgba(17,17,48,0.2);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 90%;
+    height: 90%;
 }
 
 .close {
@@ -63,6 +40,10 @@ textarea {
         cursor: pointer;
     }
 
+.modallist {
+    color:black;
+    text-align:left;
+}
 
 
 .list {

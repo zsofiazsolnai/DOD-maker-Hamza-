@@ -1,184 +1,123 @@
-﻿<link rel="stylesheet" href="~/Content/Site.css" type="text/css">
-
-@{
+﻿@{
     ViewBag.Title = "DoDList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/Content/Site.css" type="text/css">
+<script src="~/Scripts/Logic.js"></script> 
   <form id="form1" style="background-color: #F5F5F5">
-    <script>
-        var exists = [] ;
-        function allowDrop(ev)
-        {
-             ev.preventDefault();
-         }
-
-        function drag(ev)
-        {
-             ev.dataTransfer.setData("text", ev.target.id);
-         }
-
-        function dropDelete(ev) {
-            ev.preventDefault();
-            var x = ev.dataTransfer.getData("text");
-            var index = exists.indexOf(x);
-            exists.splice(index, 1);
-            var el = document.getElementById(x);
-            el.parentNode.removeChild(el);
-        }
-
-        function param(ev, x, nodeCopy) {
-            var modal = document.getElementById('myModalP');
-            var span = document.getElementById('par');
-            modal.style.display = "block";
-            span.onclick = function () {
-                modal.style.display = "none";
-                exists.push(x);
-                ev.target.appendChild(nodeCopy);
-            }
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        }
-
-        function rad(ev, x, nodeCopy) {
-            var modal = document.getElementById('myModalM');
-            var span = document.getElementById('rad');
-            modal.style.display = "block";
-            span.onclick = function () {
-                modal.style.display = "none";
-                exists.push(x);
-                ev.target.appendChild(nodeCopy);
-            }
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        }
-
-        function opt(ev, x,nodeCopy) {
-            var modal = document.getElementById('myModalO');
-            var span = document.getElementById('opt');
-            modal.style.display = "block";
-            span.onclick = function () {
-                modal.style.display = "none";
-                exists.push(x);
-                ev.target.appendChild(nodeCopy);
-            }
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        }
-
-        function dropCopy(ev) {
-            ev.preventDefault();
-            var x = ev.dataTransfer.getData("text");
-            if (exists.includes(x)) {
-                alert("You already added this template!"); 
-            }
-            else {
-                var nodeCopy = document.getElementById(x).cloneNode(true);
-                var name = nodeCopy.textContent;
-                nodeCopy.id = "newId";
-                if (name.endsWith('<parameter>', name.length - 2)) {
-                    param(ev, x, nodeCopy);
-                }
-                else
-                    if (name.endsWith('(multiplechoice)',name.length - 2)) {
-                        rad(ev, x, nodeCopy);
-                    }
-                    else
-                        if (name.endsWith('[option]', name.length - 2)) {
-                            opt(ev, x, nodeCopy);
-                        }
-                        else {
-                            ev.target.appendChild(nodeCopy);
-                        }
-            }
-        }
-
-        function copyOnClick() {
-            var x = document.getElementById("ListBox1").selectedIndex;
-            var nodeCopy = document.getElementById(x).cloneNode(true);
-            nodeCopy.id = x;
-            document.getElementById("ListBox2").appendChild(nodeCopy);
-        }
-
-        function removeOnClick() {
-            var x = document.getElementById("ListBox2");
-            x.remove(x.selectedIndex);
-        }
-
-     </script>
-
+      
       <div id="myModalP" class="modal">
-      <div class="modal-content">
-          <span class="close" id="par"> Accept </span>
-          <p>
-              Add the parameter:  <input type="text" id="parameter" />
-          </p>
-      </div>
+          <div class="modal-content">
+              <span class="close" id="par"> Accept </span>
+              <p class="modallist">
+                 <h4> Add the parameter: </h4> <input type="text" name="parameter" />
+</p>
+          </div>
       </div>
 
       <div id="myModalM" class="modal">
           <div class="modal-content">
               <span class="close" id="rad"> Accept </span>
-              <p>
-                  Choose on option:  <input type="radio" id="rad" name="option" /> option 1
-                  <input type="radio" id="rad" name="ch" /> option 2
-                  <input type="radio" id="rad" name="ch" /> option 3
+              <p class="modallist">
+                  <h4>Choose on option:  </h4> <input type="radio" name="task" /> subtasks
+                  <input type="radio" name="task" /> TODO items
+              </p>
+          </div>
+      </div>
+
+      <div id="myModalMP" class="modal">
+          <div class="modal-content">
+              <span class="close" id="radp"> Accept </span>
+              <p class="modallist">
+                  <h4> Choose on option: </h4> <br />
+                  <input type="radio" name="code" />All code <br />
+                  <input type="radio" name="code" />  Scope of code <input type="text" />
               </p>
           </div>
       </div>
 
       <div id="myModalO" class="modal">
-          <div class="modal-content" id="opt">
-              <span class="close"> Accept </span>
-              <p>
-                  Do you want this feature or not? :  <input type="checkbox" id="check" /> Feature
+          <div class="modal-content">
+              <span class="close" id="opt"> Accept </span>
+              <p class="modallist">
+                  <h4> Do you want this feature or not? : </h4> <input type="checkbox" id="check" /> Feature
               </p>
           </div>
       </div>
 
-      <table align="center">
-          <caption>
-              <h2>DoD Template List</h2>
-              
-          </caption>
+      <div id="Complicated" class="modal">
+          <div class="modal-content">
+              <span class="close" id="comp"> Accept </span>
+              <p class="modallist">
+                  <h4> Choose option: </h4> <br />
+                  <input type="radio" name="test"> All <input type="text"> (test type) <br />
+                  <input type="radio" name="test">  <input type="text"> (specific test) <br />
+                  <input type="checkbox"> area <input type="text"> <br />
+              </p>
+          </div>
+      </div>
 
-        <tr>
-            <th>Basic DoD templates</th>
-            <th></th>
-            <th> My DoD templates </th>
-        </tr>
-        <tr>
-            <td>
-                <select id="ListBox1" class="list" style="height:340px ; width: 300px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
-                @{
-                    int i = 0;
-                    foreach (var elem in ViewBag.Example)
-                    {
-                        <option id="@i" draggable="true" ondragstart="drag(event)"> @elem  </option>
-                        i++;
-                    }
-                }
-                 </select>
-            </td>
-            <td style="width:118px;">
-                <input type="button" id="copyItem" value="Select" onclick="copyOnClick()" /> 
-                <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />      
-            </td>
+      <div id="myModalRPO" class="modal">
+          <div class="modal-content">
+              <span class="close" id="rpo"> Accept </span>
+              <p class="modallist">
+                  <h4> Choose on option: </h4> <br />
+                  <input type="radio" name="comitted"> Code <br />
+                  <input type="radio" name="comitted"> scripts <input type="text"> (name) <br />
+                    is <br/>
+                  <input type="radio" name="repo"> checked- in <br />
+                  <input type="radio" name="repo"> committed <br />
+              </p>
+          </div>
+      </div>
+      
+      <div id="myModalRPP" class="modal">
+          <div class="modal-content">
+              <span class="close" id="rpp"> Accept </span>
+              <p class="modallist">
+                  <h4> Chosse an option: </h4> <br />
+                  <input type="radio" name="dev" /> Other developer <br/>
+                  <input type="radio" name="dev" /> <input type="text" /> (name) <br />
+                  <input type="checkbox" /> including mini-presentation <br />
+                  <input type="checkbox" /> the task was completed in pair-programming <br />
+              </p>
+          </div>
+      </div>
+          <table align="center">
+              <caption>
+                  <h2>DoD Template List</h2>
 
-            <td>
-                <select id="ListBox2" class="list" style="height:340px ; width: 300px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)"/>
-            </td>
-        </tr>
-   </table>
- </form>
+              </caption>
+
+              <tr>
+                  <th>Basic DoD templates</th>
+                  <th></th>
+                  <th> My DoD templates </th>
+              </tr>
+              <tr>
+                  <td>
+                      <select id="ListBox1" class="list" style="height:340px ; width: 400px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+                          @{
+                              int i = 0;
+                              foreach (var elem in ViewBag.Example)
+                              {
+                                  <option id="@i" draggable="true" ondragstart="drag(event)"> @elem  </option>
+                                  i++;
+                              }
+                          }
+                      </select>
+                  </td>
+                  <td style="width:118px;">
+                      <input type="button" id="copyItem" value="Select" onclick="copyOnClick()" />
+                      <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />
+                  </td>
+
+                  <td>
+                      <select id="ListBox2" class="list" style="height:340px ; width: 400px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)" />
+                  </td>
+              </tr>
+          </table>
+</form>
 
 
 

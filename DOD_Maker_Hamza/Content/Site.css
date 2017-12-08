@@ -17,7 +17,7 @@ adress {
     width: 50%;
     height: 60%;
     overflow:auto;
-    background-color: rgba(17,17,48,0.2);
+    background-color: rgba(30,88,138,0.2);
 }
 
 .modal-content {
@@ -45,18 +45,6 @@ adress {
     text-align:left;
 }
 
-
-.list {
-    width: 100%;
-    padding: 16px 20px;
-    border: groove;
-    border-color: darkgray;
-    border-radius: 6px;
-    background-color: white;
-
-
-}
-
 /*css navbar*/
 
 ul {
@@ -64,8 +52,7 @@ ul {
     margin-top: -40px;
     padding: 0;
     overflow: hidden;
-    background-color: #111130;
-    
+    background-color: #2668A2;
 }
 
 li {
@@ -75,7 +62,7 @@ li {
 
 li a {
     display: block;
-    color:black;
+    color:white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;

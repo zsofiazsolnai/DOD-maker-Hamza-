@@ -160,12 +160,17 @@
     <Compile Include="Migrations\201712091854411_updatedDB.Designer.cs">
       <DependentUpon>201712091854411_updatedDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712091936375_savingMyDODs.cs" />
+    <Compile Include="Migrations\201712091936375_savingMyDODs.Designer.cs">
+      <DependentUpon>201712091936375_savingMyDODs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DODdbContext.cs" />
     <Compile Include="Models\DODTemplates.cs" />
     <Compile Include="Models\DOD_Option.cs" />
     <Compile Include="Models\DOD_Template_Type.cs" />
     <Compile Include="Models\DOD_Type.cs" />
+    <Compile Include="Models\MyDODs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712091854411_updatedDB.resx">
       <DependentUpon>201712091854411_updatedDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712091936375_savingMyDODs.resx">
+      <DependentUpon>201712091936375_savingMyDODs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

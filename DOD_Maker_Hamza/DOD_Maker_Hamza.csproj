@@ -156,9 +156,16 @@
     <Compile Include="Migrations\201711111636445_initialcreate.Designer.cs">
       <DependentUpon>201711111636445_initialcreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712091854411_updatedDB.cs" />
+    <Compile Include="Migrations\201712091854411_updatedDB.Designer.cs">
+      <DependentUpon>201712091854411_updatedDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DODdbContext.cs" />
     <Compile Include="Models\DODTemplates.cs" />
+    <Compile Include="Models\DOD_Option.cs" />
+    <Compile Include="Models\DOD_Template_Type.cs" />
+    <Compile Include="Models\DOD_Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +232,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711111636445_initialcreate.resx">
       <DependentUpon>201711111636445_initialcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712091854411_updatedDB.resx">
+      <DependentUpon>201712091854411_updatedDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

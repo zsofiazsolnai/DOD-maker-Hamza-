@@ -20,10 +20,11 @@ function param(ev, x, nodeCopy) {
     var modal = document.getElementById('myModalP');
     var span = document.getElementById('par');
     modal.style.display = "block";
-    span.onclick = function () {
+    span.onclick = function() {
         modal.style.display = "none";
         exists.push(x);
         ev.target.appendChild(nodeCopy);
+        
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -128,6 +129,41 @@ function radoptopt(ev, x, nodeCopy) {
     }
 }
 
+function decide(ev, x, nodeCopy) {
+    var name = String(nodeCopy.textContent);
+    if (name.includes('<')) {
+        param(ev, x, nodeCopy);  
+    }
+    else
+        if (name.includes('(')) {
+            rad(ev, x, nodeCopy);
+        }
+        else
+            if (name.includes('[')) {
+                opt(ev, x, nodeCopy);
+            }
+            else
+                if (name.includes('*')) {
+                    radparam(ev, x, nodeCopy);
+                }
+                else
+                    if (name.includes('đ')) {
+                        radparamopt(ev, x, nodeCopy);
+                    }
+                    else
+                        if (name.includes('ä')) {
+                            radparamrad(ev, x, nodeCopy);
+                        }
+                        else
+                            if (name.includes('ł')) {
+                                radoptopt(ev, x, nodeCopy);
+                            }
+                            else {
+                                exists.push(x);
+                                ev.target.appendChild(nodeCopy);
+                            }
+}
+
 function dropCopy(ev) {
     ev.preventDefault();
     var x = ev.dataTransfer.getData("text");
@@ -137,39 +173,8 @@ function dropCopy(ev) {
     else {
         var nodeCopy = document.getElementById(x).cloneNode(true);
         nodeCopy.id = "newId";
-        var name = String( nodeCopy.textContent);
-        if (name.includes('<')) {
-            param(ev, x, nodeCopy);
-        }
-        else
-            if (name.includes('(')) {
-                rad(ev, x, nodeCopy);
-            }
-            else
-                if (name.includes('[')) {
-                    opt(ev, x, nodeCopy);
-                }
-                else
-                    if (name.includes('*')) {
-                        radparam(ev, x, nodeCopy);
-                    }
-                    else
-                        if (name.includes('đ')) {
-                            radparamopt(ev, x, nodeCopy);
-                        }
-                        else
-                            if (name.includes('ä')) {
-                                radparamrad(ev, x, nodeCopy);
-                            }
-                            else
-                                if (name.includes('ł')) {
-                                    radoptopt(ev, x, nodeCopy);
-                                }
-                                else {
-                                    exists.push(x);
-                                     ev.target.appendChild(nodeCopy);
-                                 }
-    }
+        decide(ev, x, nodeCopy);
+    } 
 }
 
 function copyOnClick() {

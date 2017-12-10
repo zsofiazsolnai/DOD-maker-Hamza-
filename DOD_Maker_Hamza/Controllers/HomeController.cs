@@ -56,10 +56,10 @@ namespace DOD_Maker_Hamza.Controllers
             //saveMyDODs(testList);
 
             ViewBag.Example = new List<string> { "All (subtasks|TODO items) are done",
-                                                 "đTests are passing ",
-                                                 "*All code has unit tests",
+                                                 "đTests/type are passing ",
+                                                 "*All code/section has unit tests",
                                                  "Tasks describing identified technical debt are added ",
-                                                 "ä Code| scripts committed to the repository",
+                                                 "ä Code| scripts checked-in|committed to the repository",
                                                  "Code has been reviewed by łdev.  and all suggestions  has been introduced.",
                                                  "Basic DoD <>",
                                                  "Basic DoD []",

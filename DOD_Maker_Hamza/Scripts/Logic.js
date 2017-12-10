@@ -23,7 +23,7 @@ function param(ev, x, nodeCopy) {
     span.onclick = function() {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
         
     }
     window.onclick = function (event) {
@@ -40,7 +40,7 @@ function rad(ev, x, nodeCopy) {
     span.onclick = function () {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -56,7 +56,7 @@ function opt(ev, x, nodeCopy) {
     span.onclick = function () {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -72,7 +72,7 @@ function radparam(ev, x, nodeCopy) {
     span.onclick = function () {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -88,7 +88,7 @@ function radparamopt(ev, x, nodeCopy) {
     span.onclick = function () {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -104,7 +104,7 @@ function radparamrad(ev, x, nodeCopy) {
     span.onclick = function () {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -120,7 +120,7 @@ function radoptopt(ev, x, nodeCopy) {
     span.onclick = function () {
         modal.style.display = "none";
         exists.push(x);
-        ev.target.appendChild(nodeCopy);
+        document.getElementById("ListBox2").appendChild(nodeCopy);
     }
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -160,7 +160,7 @@ function decide(ev, x, nodeCopy) {
                             }
                             else {
                                 exists.push(x);
-                                ev.target.appendChild(nodeCopy);
+                                document.getElementById("ListBox2").appendChild(nodeCopy);
                             }
 }
 
@@ -177,14 +177,40 @@ function dropCopy(ev) {
     } 
 }
 
-function copyOnClick() {
+function copyOnClick(ev) {
     var x = document.getElementById("ListBox1").selectedIndex;
-    var nodeCopy = document.getElementById(x).cloneNode(true);
-    nodeCopy.id = x;
-    document.getElementById("ListBox2").appendChild(nodeCopy);
+    if (exists.includes(x)) {
+        alert("You already added this template!");
+    }
+    else {
+        var nodeCopy = document.getElementById(x).cloneNode(true);
+        nodeCopy.id = x;
+        //document.getElementById("ListBox2").appendChild(nodeCopy);
+        decide(ev, x, nodeCopy);
+    }
 }
 
 function removeOnClick() {
     var x = document.getElementById("ListBox2");
     x.remove(x.selectedIndex);
+}
+
+function saveOnClick() {
+    var x = document.getElementById("ListBox2");
+    var arr = [];
+    //var txt = "All options: ";
+    var i;
+    for (i = 0; i < x.length; i++) {
+        //txt = txt + "\n" + x.options[i].value;
+        arr.push(x.options[i].value);
+    }
+    $.ajax({
+        type: "POST",
+        traditional: true,
+        url: "../Home/saveMyDODs",
+        data: { dodList: arr, name: 'hamza' }
+    });
+    x.innerHTML = "";
+    alert("DOD's successfully saved");
+
 }

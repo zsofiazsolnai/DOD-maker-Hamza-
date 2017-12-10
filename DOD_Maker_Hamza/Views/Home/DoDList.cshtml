@@ -107,7 +107,7 @@
                       </select>
                   </td>
                   <td style="width:118px;">
-                      <input type="button" id="copyItem" value="Select" onclick="copyOnClick()" />
+                      <input type="button" id="copyItem" value="Select" onclick="copyOnClick(event)" />
                       <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />
                   </td>
 
@@ -116,6 +116,7 @@
                   </td>
               </tr>
           </table>
+      <input type="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
 </form>
 
 

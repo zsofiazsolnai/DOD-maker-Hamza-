@@ -12,5 +12,11 @@ namespace DOD_Maker_Hamza.Models
         public int MyDODs_ID { get; set; }
         public string OwnerName { get; set; }
         public string MyDOD { get; set; }
+
+        public MyDODs(string myDod, string name)
+        {
+            this.MyDOD = myDod;
+            this.OwnerName = name;
+        }
     }
 }

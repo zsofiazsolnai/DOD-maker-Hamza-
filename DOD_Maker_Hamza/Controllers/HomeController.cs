@@ -37,34 +37,17 @@ namespace DOD_Maker_Hamza.Controllers
 
         public ActionResult DoDList()
         {
-            //List<MyDODs> testList = new List<MyDODs>();
-            //MyDODs dod1 = new MyDODs();
-            //dod1.MyDOD = "dod1";
-            //dod1.OwnerName = "Hamza";
-            //testList.Add(dod1);
-            //dod1 = new MyDODs();
-
-            //dod1.MyDOD = "dod2";
-            //dod1.OwnerName = "Hamza";
-            //testList.Add(dod1);
-            //dod1 = new MyDODs();
-
-            //dod1.MyDOD = "dod3";
-            //dod1.OwnerName = "Hamza";
-            //testList.Add(dod1);
-
-            //saveMyDODs(testList);
-
-            ViewBag.Example = new List<string> { "All (subtasks|TODO items) are done",
-                                                 "đTests/type are passing ",
-                                                 "*All code/section has unit tests",
-                                                 "Tasks describing identified technical debt are added ",
-                                                 "ä Code| scripts checked-in|committed to the repository",
-                                                 "Code has been reviewed by łdev.  and all suggestions  has been introduced.",
-                                                 "Basic DoD <>",
-                                                 "Basic DoD []",
-                                                 "Basic DoD #8",
-                                                 "Basic DoD #9"};
+            //ViewBag.Example = new List<string> { "All (subtasks|TODO items) are done",
+            //                                     "đTests/type are passing ",
+            //                                     "*All code/section has unit tests",
+            //                                     "Tasks describing identified technical debt are added ",
+            //                                     "ä Code| scripts checked-in|committed to the repository",
+            //                                     "Code has been reviewed by łdev.  and all suggestions  has been introduced.",
+            //                                     "Basic DoD <>",
+            //                                     "Basic DoD []",
+            //                                     "Basic DoD #8",
+            //                                     "Basic DoD #9"};
+            ViewBag.Example = getAllDODTemplates();
             return View();
         }
        
@@ -76,8 +59,6 @@ namespace DOD_Maker_Hamza.Controllers
         {
             DODdbContext db = new DODdbContext();
             List<DODTemplates> dodList = db.DODTemplate.ToList();
-            //   foreach (DODTemplates dos in dodList) { Console.Write(dos.DODTemplate); } ;
-            //   getType(1);
             return dodList;
 
         }
@@ -86,14 +67,17 @@ namespace DOD_Maker_Hamza.Controllers
         {
             DODdbContext db = new DODdbContext();
             List<DOD_Option> templateType = db.DOD_Option.Where(type => type.DODTemplateID == TemplateID).ToList();
-
-            // foreach (DOD_Option dos in templateType) { Console.Write(dos.Option_Text); }
         }
 
-        public void saveMyDODs (List<MyDODs> mydods)
+        public void saveMyDODs(string[] dodList, string name)
         {
             DODdbContext db = new DODdbContext();
-            db.MyDODs.AddRange(mydods);
+            List<MyDODs> myDOD = new List<MyDODs>();
+            foreach (string dod in dodList)
+            {
+                myDOD.Add(new MyDODs(dod, name));
+            }
+            db.MyDODs.AddRange(myDOD);
             db.SaveChanges();
 
         }

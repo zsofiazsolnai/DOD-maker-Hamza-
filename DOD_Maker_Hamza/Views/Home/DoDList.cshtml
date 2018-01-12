@@ -6,83 +6,18 @@
 <script src="~/Scripts/Logic.js"></script> 
   <form id="form1" style="background-color: #F5F5F5">
       
-      <div id="myModalP" class="modal">
-          <div class="modal-content">
-              <span class="close" id="par"> Accept </span>
-              <p class="modallist">
-                 <h4> Add the parameter: </h4> <input type="text" id="parameter" />
-</p>
-          </div>
-      </div>
-
       <div id="myModalM" class="modal">
           <div class="modal-content">
               <span class="close" id="rad"> Accept </span>
               <p class="modallist">
-                  <h4>Choose on option:  </h4> <input type="radio" name="task" /> subtasks
-                  <input type="radio" name="task" /> TODO items
+                  <span id="OptionsArea">
+                      <!--Textboxes will be added here -->
+
+                  </span>
               </p>
           </div>
       </div>
 
-      <div id="myModalMP" class="modal">
-          <div class="modal-content">
-              <span class="close" id="radp"> Accept </span>
-              <p class="modallist">
-                  <h4> Choose on option: </h4> <br />
-                  <input type="radio" name="code" />All code <br />
-                  <input type="radio" name="code" />  Scope of code <input type="text" />
-              </p>
-          </div>
-      </div>
-
-      <div id="myModalO" class="modal">
-          <div class="modal-content">
-              <span class="close" id="opt"> Accept </span>
-              <p class="modallist">
-                  <h4> Do you want this feature or not? : </h4> <input type="checkbox" id="check" /> Feature
-              </p>
-          </div>
-      </div>
-
-      <div id="Complicated" class="modal">
-          <div class="modal-content">
-              <span class="close" id="comp"> Accept </span>
-              <p class="modallist">
-                  <h4> Choose option: </h4> <br />
-                  <input type="radio" name="test"> All <input type="text"> (test type) <br />
-                  <input type="radio" name="test">  <input type="text"> (specific test) <br />
-                  <input type="checkbox"> area <input type="text"> <br />
-              </p>
-          </div>
-      </div>
-
-      <div id="myModalRPO" class="modal">
-          <div class="modal-content">
-              <span class="close" id="rpo"> Accept </span>
-              <p class="modallist">
-                  <h4> Choose on option: </h4> <br />
-                  <input type="radio" name="comitted"> Code <br />
-                  <input type="radio" name="comitted"> scripts <input type="text"> (name) <br />
-                    is <br/>
-                  <input type="radio" name="repo"> checked- in <br />
-                  <input type="radio" name="repo"> committed <br />
-              </p>
-          </div>
-      </div>
-      
-      <div id="myModalRPP" class="modal">
-          <div class="modal-content">
-              <span class="close" id="rpp"> Accept </span>
-              <p class="modallist">
-                  <h4> Chosse an option: </h4> <br />
-                  <input type="radio" name="dev" /> Other developer <br/>
-                  <input type="radio" name="dev" /> <input type="text" /> (name) <br />
-                  <input type="checkbox" /> including mini-presentation <br />
-                  <input type="checkbox" /> the task was completed in pair-programming <br />
-              </p>
-          </div>
-      </div>
          
       <table align="center">
               <caption>
@@ -100,7 +35,7 @@
                               int i = 0;
                               foreach (var elem in ViewBag.Example)
                               {
-                                  <option id="@i" draggable="true" ondragstart="drag(event)"> @elem  </option>
+                                  <option id="@i" draggable="true" ondragstart="drag(event)"> @elem.DODTemplate  </option>
                                   i++;
                               }
                           }
@@ -118,11 +53,3 @@
           </table>
       <input type="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
 </form>
-
-
-
-
-
-
-
-

@@ -7,84 +7,8 @@ function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
-function dropDelete(ev) {
+function copyDOD(ev) {
     ev.preventDefault();
-    var x = ev.dataTransfer.getData("text");
-    var index = exists.indexOf(x);
-    exists.splice(index, 1);
-    var el = document.getElementById(x);
-    el.parentNode.removeChild(el);
-}
-
-function rad(ev, x, nodeCopy) {
-    var modal = document.getElementById('myModalM');
-    var span = document.getElementById('rad');
-    var selectedOpt = "";
-    modal.style.display = "block";
-    span.onclick = function () {
-        modal.style.display = "none";
-        for (var i = 0; i < dodText.length; i++) {
-            if (dodText[i].startsWith("#")) {
-                DODTEXT = DODTEXT.concat(getValuesfromOptions(dodText[i][1]));
-            }
-            else if (dodText[i].startsWith("@")) {
-                var value = document.getElementById("param3").value;
-                DODTEXT = DODTEXT.concat(value);
-            }
-            else {
-                DODTEXT = DODTEXT.concat(dodText[i]);
-            }
-            exists.push(x);
-
-        }
-        nodeCopy.textContent = DODTEXT;
-        document.getElementById("ListBox2").appendChild(nodeCopy);
-    }
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-}
-
-function getValuesfromOptions(id) {
-    var radioButtons = document.getElementsByName("opt" + id);
-    for (var x = 0; x < radioButtons.length; x++) {
-        if (radioButtons[x].checked) {
-            selectedOpt = radioButtons[x].value;
-        }
-    }
-    var rbWithInput = document.getElementsByName("optWithParam" + id);
-    for (var x = 0; x < rbWithInput.length; x++) {
-        if (rbWithInput[x].checked) {
-            var name = "inputopt" + x + "";
-            selectedOpt = document.getElementById(name).value;// rbWithInput[x].value;
-        }
-    }
-
-    return selectedOpt;
-}
-
-function decide(ev, x, nodeCopy) {
-    var name = String(nodeCopy.textContent);
-    rad(ev, x, nodeCopy);
-}
-
-function dropCopy(ev) {
-    ev.preventDefault();
-    var x = ev.dataTransfer.getData("text");
-    if (exists.includes(x)) {
-        alert("You already added this template!");
-    }
-    else {
-        var nodeCopy = document.getElementById(x).cloneNode(true);
-        nodeCopy.id = "newId";
-        decide(ev, x, nodeCopy);
-    } 
-}
-
-function copyOnClick(ev) {
-    parseDODforOptions();
     var x = document.getElementById("ListBox1").selectedIndex;
     if (exists.includes(x)) {
         alert("You already added this template!");
@@ -92,23 +16,29 @@ function copyOnClick(ev) {
     else {
         var nodeCopy = document.getElementById(x).cloneNode(true);
         nodeCopy.id = x;
-        //document.getElementById("ListBox2").appendChild(nodeCopy);
-        decide(ev, x, nodeCopy);
+
+        if (parseDODforOptions(String(nodeCopy.textContent))) {
+            rad(x, nodeCopy);
+        }
+        else {
+            document.getElementById("ListBox2").appendChild(nodeCopy);
+        }
+
     }
 }
 
-function removeOnClick() {
+function removeDOD(ev) {
+    ev.preventDefault();
     var x = document.getElementById("ListBox2");
     x.remove(x.selectedIndex);
+    exists.pop(x);
 }
 
 function saveOnClick() {
     var x = document.getElementById("ListBox2");
     var arr = [];
-    //var txt = "All options: ";
     var i;
     for (i = 0; i < x.length; i++) {
-        //txt = txt + "\n" + x.options[i].value;
         arr.push(x.options[i].value);
     }
     $.ajax({
@@ -122,23 +52,78 @@ function saveOnClick() {
 
 }
 
+function rad(x, nodeCopy) {
+    var modal = document.getElementById('myModalM');
+    var span = document.getElementById('rad');
+    modal.style.display = "block";
+    span.onclick = function () {
+        modal.style.display = "none";
+        for (var i = 0; i < dodText.length; i++) {
+            if (dodText[i].startsWith("#") || dodText[i].startsWith("$")) {
+                DODTEXT = DODTEXT.concat(getValuesfromOptions(dodText[i][1]));
+            }
+            else if (dodText[i].startsWith("@")) {
+                var value = document.getElementById("param" + dodText[i][1]).value;
+                DODTEXT = DODTEXT.concat(value);
+            }
+            else {
+                DODTEXT = DODTEXT.concat(dodText[i]);
+            }
+        }
+        nodeCopy.textContent = DODTEXT;
+        document.getElementById("ListBox2").appendChild(nodeCopy);
+        exists.push(x);
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
+function getValuesfromOptions(id) {
+    var selectedOpt = "";
+    var radioButtons = document.getElementsByName("option" + id);
+    for (var x = 0; x < radioButtons.length; x++) {
+        if (radioButtons[x].checked) {
+            if (radioButtons[x].value != ""){
+                selectedOpt = radioButtons[x].value;
+            }
+            else {
+                var name = "inputopt" + id + "" + x + "";
+                var optWithParamValue = document.getElementById("optWithParamValue" + id + "" + x).value;
+                var userInput = document.getElementById(name).value
+                selectedOpt = optWithParamValue.replace("*", userInput);
+            }
+        }
+    }
+
+    return selectedOpt;
+}
+
 var DODTEXT = "";
 var dodText = [""];
 
-function parseDODforOptions() {
-    var dod = "All (<subtasks>|<TODO items>) are done by (dev|QA) to test <parameter> done";
+function parseDODforOptions(dod) {
+    //var dod = "All (<subtasks>|<TODO items>) are done by (dev|QA) to test <parameter> done";
     var newDod = "";
+    DODTEXT = "";
+    dodText = [""];
     var options = [];
     var option = "";
     var optionStart = false;
     var paramStart = false;
+    var chkBoxStart = false;
     var paramValue = "";
+    var chkBoxValue = "";
     var optionhtml = "<div>";
-    var inputNumber = 1;
+    var inputNumber = 0;
+    var inputNeeded = false;
     for (var i = 0; i < dod.length; i++) {
         if (dod[i] == '(') {
             optionStart = true;
-            if (newDod != "") { 
+            inputNeeded = true;
+            if (newDod != "") {
                 dodText.push(newDod);
                 newDod = "";
             }
@@ -152,15 +137,35 @@ function parseDODforOptions() {
             option = "";
             optionStart = false;
             dodText.push("#" + inputNumber);
-            optionhtml = displayingOptions(optionhtml, options, inputNumber);
+            optionhtml = displayingOptions(optionhtml, options, inputNumber, "radio");
             options = [];
             inputNumber++;
         }
         else if (optionStart) {
             option = option.concat(dod[i]);
         }
+        else if (dod[i] == '[') {
+            chkBoxStart = true;
+            inputNeeded = true;
+            if (newDod != "") {
+                dodText.push(newDod);
+                newDod = "";
+            }
+        }
+        else if (dod[i] == ']') {
+            chkBoxStart = false
+            dodText.push("$" + inputNumber);
+            options = [chkBoxValue];
+            optionhtml = displayingOptions(optionhtml, options, inputNumber, "checkbox");
+            inputNumber++;
+            chkBoxValue = "";
+        }
+        else if (chkBoxStart) {
+            chkBoxValue = chkBoxValue.concat(dod[i]);
+        }
         else if (dod[i] == '<') {
             paramStart = true;
+            inputNeeded = true;
             if (newDod != "") {
                 dodText.push(newDod);
                 newDod = "";
@@ -170,6 +175,8 @@ function parseDODforOptions() {
             paramStart = false;
             dodText.push("@" + inputNumber);
             optionhtml = displayingParameter(inputNumber, paramValue, optionhtml);
+            inputNumber++;
+            paramValue = "";
         }
         else if (paramStart) {
             paramValue = paramValue.concat(dod[i]);
@@ -180,25 +187,37 @@ function parseDODforOptions() {
         }
     }
     dodText.push(newDod);
-    optionhtml.concat("</div>");
+    optionhtml.concat('</div>');
     //DODTEXT = dodText.join("*");
     //document.getElementById("optionText").innerHTML = optionhtml;
-
-    var span = $("<span />");
-    span.html(optionhtml);
-    $("#OptionsArea").append(span);
+    if (inputNeeded) { 
+        var span = $("<span />");
+        span.html(optionhtml);
+        $("#OptionsArea").html("");
+        $("#OptionsArea").append(span);
+    }
+    return inputNeeded
 }
 
-function displayingOptions(optionhtml, options, inputNumber) {
+
+function displayingOptions(optionhtml, options, inputNumber, inputType) {
     var inputTextId = 0;
     for (var i = 0; i < options.length; i++) {
         var inputStart = false;
         var input = "";
+        var fixedText = "";
+        var optionwithParam = ""
         if (options[i].includes('<')) {
             var paramInOpt = options[i];
+            optionhtml = optionhtml.concat('<br /> <input type="' + inputType +'" name =option' + inputNumber + ' value=""/>');
             for (var j = 0; j < paramInOpt.length; j++) {
                 if (paramInOpt[j] == '<') {
                     inputStart = true;
+                    if (fixedText != "") {
+                        optionhtml = optionhtml.concat(fixedText);
+                        optionwithParam = optionwithParam.concat(fixedText + " *");
+                        fixedText = "";
+                    }
                 }
                 else if (paramInOpt[j] == '>') {
                     inputStart = false;
@@ -206,15 +225,19 @@ function displayingOptions(optionhtml, options, inputNumber) {
                 else if (inputStart) {
                     input = input.concat(paramInOpt[j]);
                 }
+                else {
+                    fixedText = fixedText.concat(paramInOpt[j])
+                }
             }
-            var name = "inputopt" + inputTextId + "";
-            optionhtml = optionhtml.concat('<br /> <input type="radio" name="optWithParam' + inputNumber + '" value="' + input + '"/><input id="' + name + '" type="text" placeholder="' + input + '"/><br />');
-            inputTextId = inputTextId + 1;
+            optionwithParam = optionwithParam.concat(fixedText);
+            var name = "inputopt" + inputNumber + "" + inputTextId + "";
+            optionhtml = optionhtml.concat('<input id="' + name + '" type="text" placeholder="' + input + '"/>' + fixedText + '<br />');
+            optionhtml = optionhtml.concat('<input type="hidden" id="optWithParamValue' + inputNumber + "" + inputTextId + '" value="' + optionwithParam + '"/>');
         }
         else {
-            optionhtml = optionhtml.concat('<br /> <input type="radio" name="opt' + inputNumber + '" value="' + options[i] + '"/>' + options[i] + '<br />');
+            optionhtml = optionhtml.concat('<br /> <input type="' + inputType +'" name =option' + inputNumber + ' value="' + options[i] + '"/>' + options[i] + '<br />');
         }
-
+        inputTextId = inputTextId + 1;
     }
     
     return optionhtml;

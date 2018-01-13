@@ -30,7 +30,7 @@
               </tr>
               <tr>
                   <td>
-                      <select id="ListBox1" class="list" style="height:340px ; width: 400px" size="6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+                      <select id="ListBox1" class="list" style="height:340px ; width: 400px" size="6" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
                           @{
                               int i = 0;
                               foreach (var elem in ViewBag.Example)
@@ -42,12 +42,12 @@
                       </select>
                   </td>
                   <td style="width:118px;">
-                      <input type="button" id="copyItem" value="Select" onclick="copyOnClick(event)" />
-                      <input type="button" id="copyItem" value="Remove" onclick="removeOnClick()" />
+                      <input type="button" id="copyItem" value="Select" onclick="copyDOD(event)" />
+                      <input type="button" id="copyItem" value="Remove" onclick="removeDOD(event)" />
                   </td>
 
                   <td>
-                      <select id="ListBox2" class="list" style="height:340px ; width: 400px" size="6" ondrop="dropCopy(event)" ondragover="allowDrop(event)" />
+                      <select id="ListBox2" class="list" style="height:340px ; width: 400px" size="6" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
                   </td>
               </tr>
           </table>

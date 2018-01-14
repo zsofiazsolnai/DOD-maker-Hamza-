@@ -172,7 +172,12 @@
     <Compile Include="Migrations\201801132047384_UserTable.Designer.cs">
       <DependentUpon>201801132047384_UserTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801141650576_AvailableProjects.cs" />
+    <Compile Include="Migrations\201801141650576_AvailableProjects.Designer.cs">
+      <DependentUpon>201801141650576_AvailableProjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AvailableProjects.cs" />
     <Compile Include="Models\DODdbContext.cs" />
     <Compile Include="Models\DODTemplates.cs" />
     <Compile Include="Models\DOD_Option.cs" />
@@ -183,10 +188,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DOD_Maker_Hamza.Models.DODdbContext.mdf" />
-    <Content Include="App_Data\DOD_Maker_Hamza.Models.DODdbContext_log.ldf">
-      <DependentUpon>DOD_Maker_Hamza.Models.DODdbContext.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -234,7 +235,9 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -262,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801132047384_UserTable.resx">
       <DependentUpon>201801132047384_UserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801141650576_AvailableProjects.resx">
+      <DependentUpon>201801141650576_AvailableProjects.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

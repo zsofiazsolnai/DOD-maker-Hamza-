@@ -62,10 +62,10 @@ namespace DOD_Maker_Hamza.Controllers
                 {
                     Session["UserID"] = usr.UserID.ToString();
                     Session["FirstName"] = usr.FirstName.ToString();
-                    if(user.EmailID == "admin@admin.com")
-                    {
-                        return RedirectToAction("Admin", "Admin");
-                    }
+                    //if(user.EmailID == "admin@admin.com")
+                    //{
+                    //    return RedirectToAction("Admin", "Admin");
+                    //}
                     return RedirectToAction("DoDList", "Home");
                 }
                 else

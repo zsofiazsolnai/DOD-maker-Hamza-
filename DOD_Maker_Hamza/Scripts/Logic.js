@@ -36,20 +36,31 @@ function removeDOD(ev) {
 
 function saveOnClick() {
     var x = document.getElementById("ListBox2");
+    var pId = document.getElementById("projDropDown").value;
+    //var pId = proj.options[proj.selectedIndex].value;
+    //if (pId == -1) {
+    //    alert("Please select Project");
+    //    return;
+    //}
     var arr = [];
     var i;
-    for (i = 0; i < x.length; i++) {
-        arr.push(x.options[i].value);
+    if (x.length == 0) {
+        alert("No DOD is available to save");
+        return;
     }
-    $.ajax({
-        type: "POST",
-        traditional: true,
-        url: "../Home/saveMyDODs",
-        data: { dodList: arr, name: 'hamza' }
-    });
-    x.innerHTML = "";
-    alert("DOD's successfully saved");
-
+    else {
+        for (i = 0; i < x.length; i++) {
+            arr.push(x.options[i].value);
+        }
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            url: "../Home/saveMyDODs",
+            data: { dodList: arr, projId: pId }
+        });
+        x.innerHTML = "";
+        alert("DOD's successfully saved");
+    }
 }
 
 function exportToPDF() {
@@ -58,19 +69,25 @@ function exportToPDF() {
     var pdfInMM = 300;  // width of A4 in mm
     var doc = new jsPDF("p", "mm", "a4");
     var options = document.getElementById("ListBox2").options;
-    doc.setFontSize(20);
-    doc.text(lMargin, 20, 'Definition of Done');
 
-    var text = "";
-
-    for (var i = 0; i < options.length; i++) {
-        text = text.concat((i + 1) + ". " + options[i].value + "\n\n");
+    if (options.length == 0) {
+        alert("No DOD is available to export");
     }
-    var lines = doc.splitTextToSize(text, (pdfInMM - lMargin - rMargin));
-    doc.setFontSize(14);
-    doc.text(lMargin, 30, lines);
+    else {
+        for (var i = 0; i < options.length; i++) {
+            text = text.concat((i + 1) + ". " + options[i].value + "\n\n");
+        }
+        doc.setFontSize(20);
+        doc.text(lMargin, 20, 'Definition of Done');
 
-    doc.save('DOD.pdf');
+        var text = "";
+
+        var lines = doc.splitTextToSize(text, (pdfInMM - lMargin - rMargin));
+        doc.setFontSize(14);
+        doc.text(lMargin, 30, lines);
+
+        doc.save('DOD.pdf');
+    }
 }
 
 function rad(x, nodeCopy) {

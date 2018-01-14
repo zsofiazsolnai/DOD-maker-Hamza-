@@ -10,13 +10,19 @@ namespace DOD_Maker_Hamza.Models
     {
         [Key]
         public int MyDODs_ID { get; set; }
-        public string OwnerName { get; set; }
         public string MyDOD { get; set; }
 
-        public MyDODs(string myDod, string name)
+        public int UserID { get; set; }
+        public User User { get; set; }
+
+        public int AvailableProjectID { get; set; }
+        public AvailableProjects AvailableProjects { get; set; }
+
+        public MyDODs(string myDod, int userId, int projId)
         {
             this.MyDOD = myDod;
-            this.OwnerName = name;
+            this.UserID = userId;
+            this.AvailableProjectID = projId;
         }
     }
 }

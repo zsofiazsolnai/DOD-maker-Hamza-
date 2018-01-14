@@ -38,6 +38,7 @@ namespace DOD_Maker_Hamza.Controllers
         public ActionResult DoDList()
         {
             ViewBag.Example = getAllDODTemplates();
+            ViewBag.Projects = getAvailableProjects();
             return View();
         }
        
@@ -53,20 +54,21 @@ namespace DOD_Maker_Hamza.Controllers
 
         }
 
-        public List<DOD_Option> getType(int TemplateID)
+        public List<AvailableProjects> getAvailableProjects()
         {
             DODdbContext db = new DODdbContext();
-            List<DOD_Option> templateType = db.DOD_Option.Where(type => type.DODTemplateID == TemplateID).ToList();
-            return templateType;
+            List<AvailableProjects> availableProjs = db.AvailableProjects.ToList();
+            return availableProjs;
         }
 
-        public void saveMyDODs(string[] dodList, string name)
+        public void saveMyDODs(string[] dodList, int projId)
         {
             DODdbContext db = new DODdbContext();
             List<MyDODs> myDOD = new List<MyDODs>();
+            int userId = Int32.Parse(Session["UserID"].ToString());
             foreach (string dod in dodList)
             {
-                myDOD.Add(new MyDODs(dod, name));
+                myDOD.Add(new MyDODs(dod, userId, projId));
             }
             db.MyDODs.AddRange(myDOD);
             db.SaveChanges();

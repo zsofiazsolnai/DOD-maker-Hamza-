@@ -14,5 +14,6 @@ namespace DOD_Maker_Hamza.Models
         public DbSet<DOD_Template_Type> DOD_Template_Type { get; set; }
         public DbSet<MyDODs> MyDODs { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<AvailableProjects> AvailableProjects { get; set; }
     }
 }

@@ -21,6 +21,17 @@
         <table align="center">
             <caption>
                 <h1>DoD Maker</h1>
+
+                <select id="projDropDown">
+                    @*
+                    <option value="-1" selected="selected">
+                        Select Project
+                    </option>*@
+                    @foreach (var proj in ViewBag.Projects)
+                    {
+                    <option value="@proj.AvailableProjectID">@proj.AvailableProjectName</option>
+                    }
+                </select>
             </caption>
             <tr>
                 <th><h3>Basic DoDs</h3></th>

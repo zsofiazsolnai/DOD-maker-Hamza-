@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DOD_Maker_Hamza.Models
 {
@@ -41,5 +42,7 @@ namespace DOD_Maker_Hamza.Models
         {
 
         }
+
+        public virtual List<MyDODs> MyDods { get; set; }
     }
 }

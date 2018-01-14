@@ -1,4 +1,8 @@
-﻿p {
+﻿body{
+    background-color:#F5F5F5;
+}
+
+p {
     color: black;
     text-align:center;
     font-style: oblique;
@@ -63,14 +67,6 @@ adress {
     font-weight:bold;
     font-style:oblique;
 }
-form {
-    background-color: #F5F5F5;
-    width:100%;
-    height:645px;
-    position:absolute;
-    top: -615px;
-    
-}
 h1 {
     font-size: 60px;
 }
@@ -124,6 +120,10 @@ li {
     width: 50px;
 }
 
+    .moves:hover {
+        background-color: #4C91CD;
+    }
+
 .button {
     color: white;
     font-size: 18px;
@@ -133,7 +133,7 @@ li {
 }
     .button:hover {
         background-color: #4C91CD;
-        font-weight:bold;
+        text-decoration:underline;
     }
 
  td {
@@ -155,4 +155,23 @@ li {
 .element {
     overflow:hidden; 
     text-overflow:ellipsis;
+}
+ .form-horizontal{
+     margin-top: -615px;
+ }
+.form-group {
+    padding-left:425px;
+}
+.col-md-10 {
+    max-width: 30%;
+}
+
+.btn {
+    color: white;
+    background-color: rgba(30,88,138,0.75);
+}
+.btn:hover {
+    background-color: #4C91CD;
+    color:white;
+    text-decoration:underline;
 }

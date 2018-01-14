@@ -100,8 +100,27 @@ li {
     padding:5px;
     display:inline-block;
 }
-    li:hover {
-        background-color: #4C91CD;
+
+.toplink1 {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    left: 90%;
+    top: 15px;
+}
+    .toplink1:hover {
+        color:white;
+    }
+.toplink2 {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    left: 95%;
+    top: 15px;
+}
+
+    .toplink2:hover {
+        color: white;
     }
 
 .footer {

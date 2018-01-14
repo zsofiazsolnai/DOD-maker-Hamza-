@@ -10,16 +10,21 @@
 </head>
 <body>
     <ul>
-        <li> @Html.ActionLink("DoD Maker", "DoDList", "Home",null,new { @style="color:white; font-size:20px"})</li>
-        <li> @Html.ActionLink("Help", "Help", "Home", null, new { @style = "color:white; font-size:20px" })</li>
-        <li> @Html.ActionLink("Contact", "Contact", "Home", null, new { @style = "color:white; font-size:20px" })</li>
-        <li> @Html.ActionLink("About", "About", "Home", null, new { @style = "color:white; font-size:20px" })</li>
-    </ul> 
+        <li> DoD Maker
+    </ul>
+    @Html.ActionLink("Login", "Login", "Account", null, new { @class="toplink1" })
+    @Html.ActionLink("Sign up", "Register", "Account", null, new { @class="toplink2" })
     <div class="footer">
         @RenderBody()
         <hr />
-        <footer >
-            <p class="small">&copy; @DateTime.Now.Year - DoD Maker - Hamza's group</p>
+        <footer>
+            <p class="small">
+                &copy; @DateTime.Now.Year - DoD Maker - Hamza's group -
+                @Html.ActionLink("Help", "Help", "Home") -
+                @Html.ActionLink("Contact", "Contact", "Home") -
+                @Html.ActionLink("About", "About", "Home")
+
+            </p>
         </footer>
     </div>
 

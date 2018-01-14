@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css">
 <script type="text/javascript" src="~/Scripts/jspdf.min.js"></script>
 <script src="~/Scripts/Logic.js"></script> 
-<form class="back" id="form1" style="background-color: #F5F5F5">
+<form id="form1">
 
         <div id="myModalM" class="modal">
             <div class="modal-content">
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td>
-                    <select id="ListBox1" class="list" style="height:400px ; width: 350px;" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
+                    <select id="ListBox1" class="list" style="height:400px ; width: 600px;" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
                             @{
                              int i = 0;
                              foreach (var elem in ViewBag.Example)
@@ -41,16 +41,16 @@
                     </select>
                 </td>
                 <td style="width:118px;">
-                    <input type="button" class="button" id="copyItem" value="Select" onclick="copyDOD(event)" /> <br/>
-                    <input type="button" class="button" id="copyItem" value="Remove" onclick="removeDOD(event)" />
+                    <input type="button" class="moves" id="copyItem" value=">>" onclick="copyDOD(event)" /> <br/>
+                    <input type="button" class="moves" id="copyItem" value="<<" onclick="removeDOD(event)" />
                 </td>
 
                 <td>
-                    <select id="ListBox2" class="list" style="height:400px ; width: 350px" size="10" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
+                    <select id="ListBox2" class="list" style="height:400px ; width: 600px" size="10" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
                 </td>
             </tr>
         </table>
         <input type="button" class="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
 
-        <input type="button" id="export" value="Export" onclick="exportToPDF()" />
+        <input type="button" class="button" id="export" value="Export to PDF" onclick="exportToPDF()" />
 </form>

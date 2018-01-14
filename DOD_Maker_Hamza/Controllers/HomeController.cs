@@ -37,16 +37,6 @@ namespace DOD_Maker_Hamza.Controllers
 
         public ActionResult DoDList()
         {
-            //ViewBag.Example = new List<string> { "All (subtasks|TODO items) are done",
-            //                                     "đTests/type are passing ",
-            //                                     "*All code/section has unit tests",
-            //                                     "Tasks describing identified technical debt are added ",
-            //                                     "ä Code| scripts checked-in|committed to the repository",
-            //                                     "Code has been reviewed by łdev.  and all suggestions  has been introduced.",
-            //                                     "Basic DoD <>",
-            //                                     "Basic DoD []",
-            //                                     "Basic DoD #8",
-            //                                     "Basic DoD #9"};
             ViewBag.Example = getAllDODTemplates();
             return View();
         }

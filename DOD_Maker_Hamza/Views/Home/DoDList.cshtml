@@ -23,7 +23,8 @@
                 <h1>DoD Maker</h1>
                 @if (Session["UserID"] != null)
                 {
-                    <select id="projDropDown">
+                    <label style="font-size:16px;font-weight:400;" >Project Name: </label>
+                    <select id="projDropDown" style="font-size:16px;">
                         
                         @foreach (var proj in ViewBag.Projects)
                         {
@@ -33,13 +34,13 @@
                 }
             </caption>
             <tr>
-                <th><h3>Basic DoDs</h3></th>
+                <th style="padding-left:15px;padding-top:0px;padding-bottom:0px;"><h3>Basic DoDs</h3></th>
                 <th></th>
-                <th> <h3>My DoDs</h3></th>
+                <th style="padding-left:15px;padding-top:0px;padding-bottom:0px;"> <h3>My DoDs</h3></th>
             </tr>
             <tr>
                 <td>
-                    <select id="ListBox1" class="list" style="height:400px ; width: 600px;" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
+                    <select id="ListBox1" class="list" style="height:375px ; width: 600px;" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
                             @{
                              int i = 0;
                              foreach (var elem in ViewBag.Example)
@@ -56,7 +57,7 @@
                 </td>
 
                 <td>
-                    <select id="ListBox2" class="list" style="height:400px ; width: 600px" size="10" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
+                    <select id="ListBox2" class="list" style="height:375px ; width: 600px" size="10" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
                 </td>
             </tr>
         </table>

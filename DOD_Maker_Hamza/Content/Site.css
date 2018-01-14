@@ -11,7 +11,7 @@ p {
 }
 
 .small {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 adress {
@@ -68,10 +68,10 @@ adress {
     font-style:oblique;
 }
 h1 {
-    font-size: 60px;
+    font-size: 35px;
 }
 h2{
-    font-size:45px;
+    font-size:40px;
     text-decoration:underline;
 }
 

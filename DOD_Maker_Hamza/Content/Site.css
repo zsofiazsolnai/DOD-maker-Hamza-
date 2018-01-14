@@ -20,20 +20,22 @@ adress {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: whitesmoke;
+    line-height: 25px;
     border: 1px solid #888;
     width: 80%;
     height: 80%;
     position: absolute;
-    left: 40px;
-    top: 20px;
+    left: 10%;
+    top: 10%;
 }
 
 .close {
     color: black;
-    float:right;
     font-size: 28px;
-    vertical-align:bottom;
+    position:absolute;
+        top: 80%;
+        left: 80%;
     font-weight: bold;
     text-decoration:underline;
 }
@@ -48,9 +50,11 @@ adress {
     display:block;
     color:black;
     font-size: 16px;
-    padding-top:30px;
-    padding-left: 50px;
+    padding-top: 5%;
+    padding-left: 15%;
     text-align:left;
+    font-weight:bold;
+    font-style:oblique;
 }
 
 ul {
@@ -61,11 +65,11 @@ ul {
     height: 60px;
     color: white;
     font-size: 30px;
-    text-align: center;
+    text-align: left;
+    display:block;
 }
 
 li {
-    float: left;
     text-decoration: none;
     padding:5px;
     display:inline-block;
@@ -85,9 +89,9 @@ li {
 }
 
 .button {
-    color:white;
-    font-size:18px;
-    background-color: #1E588A;
+    color: white;
+    font-size: 18px;
+    background-color: rgba(30,88,138,0.75);
     height: 35px;
     width: 125px;
 }
@@ -102,3 +106,11 @@ li {
  .back{
         padding:10px;
     }
+.jumbotron {
+    padding-top: 50px;
+    padding-bottom:200px;
+}
+.element {
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}

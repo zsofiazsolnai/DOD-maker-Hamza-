@@ -28,15 +28,15 @@
             </tr>
             <tr>
                 <td>
-                    <select id="ListBox1" class="list" style="height:400px ; width: 350px" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
-                        @{
-                        int i = 0;
-                        foreach (var elem in ViewBag.Example)
-                        {
-                            <option id="@i" draggable="true" ondragstart="drag(event)"> @elem.DODTemplate  </option>
-                        i++;
-                    }
-                        }
+                    <select id="ListBox1" class="list" style="height:400px ; width: 350px;" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
+                            @{
+                             int i = 0;
+                             foreach (var elem in ViewBag.Example)
+                             {
+                                <option id="@i" class="element" draggable="true" ondragstart="drag(event)" title="@elem.DODTemplate">  @elem.DODTemplate </option>
+                                  i++;
+                              }
+                            }
                     </select>
                 </td>
                 <td style="width:118px;">

@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css">
+<script type="text/javascript" src="~/Scripts/jspdf.min.js"></script>
 <script src="~/Scripts/Logic.js"></script> 
 <form class="back" id="form1" style="background-color: #F5F5F5">
 
@@ -50,4 +51,6 @@
             </tr>
         </table>
         <input type="button" class="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
-    </form>
+
+        <input type="button" id="export" value="Export" onclick="exportToPDF()" />
+</form>

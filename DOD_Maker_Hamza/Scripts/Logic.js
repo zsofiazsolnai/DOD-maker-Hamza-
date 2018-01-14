@@ -52,6 +52,27 @@ function saveOnClick() {
 
 }
 
+function exportToPDF() {
+    var lMargin = 10; //left margin in mm
+    var rMargin = 10; //right margin in mm
+    var pdfInMM = 300;  // width of A4 in mm
+    var doc = new jsPDF("p", "mm", "a4");
+    var options = document.getElementById("ListBox2").options;
+    doc.setFontSize(20);
+    doc.text(lMargin, 20, 'Definition of Done');
+
+    var text = "";
+
+    for (var i = 0; i < options.length; i++) {
+        text = text.concat((i + 1) + ". " + options[i].value + "\n\n");
+    }
+    var lines = doc.splitTextToSize(text, (pdfInMM - lMargin - rMargin));
+    doc.setFontSize(14);
+    doc.text(lMargin, 30, lines);
+
+    doc.save('DOD.pdf');
+}
+
 function rad(x, nodeCopy) {
     var modal = document.getElementById('myModalM');
     var span = document.getElementById('rad');

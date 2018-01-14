@@ -48,7 +48,7 @@ namespace DOD_Maker_Hamza.Controllers
         {
             if(TempData["shortMessage"] != null)
                 ViewBag.Message = TempData["shortMessage"].ToString();
-            ViewBag.IsLogin = true;
+            //ViewBag.IsLogin = true;
             return View();
         }
 
@@ -62,15 +62,11 @@ namespace DOD_Maker_Hamza.Controllers
                 {
                     Session["UserID"] = usr.UserID.ToString();
                     Session["FirstName"] = usr.FirstName.ToString();
-                    //if(user.EmailID == "admin@admin.com")
-                    //{
-                    //    return RedirectToAction("Admin", "Admin");
-                    //}
+                    ViewBag.IsLogin = true;
                     return RedirectToAction("DoDList", "Home");
                 }
                 else
                 {
-                    ViewBag.IsLogin = true;
                     ModelState.AddModelError("", "Email Id or Password is wrong.");
                 }
             }
@@ -81,7 +77,7 @@ namespace DOD_Maker_Hamza.Controllers
         {
             Session.Clear();
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult LoggedIn()

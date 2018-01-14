@@ -114,6 +114,7 @@ function rad(x, nodeCopy) {
             }
         }
         nodeCopy.textContent = DODTEXT;
+        nodeCopy.title = DODTEXT;
         document.getElementById("ListBox2").appendChild(nodeCopy);
         exists.push(x);
     }

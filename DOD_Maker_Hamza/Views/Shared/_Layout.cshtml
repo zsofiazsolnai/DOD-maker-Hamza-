@@ -12,8 +12,17 @@
     <ul>
         <li> DoD Maker
     </ul>
-    @Html.ActionLink("Login", "Login", "Account", null, new { @class="toplink1" })
-    @Html.ActionLink("Sign up", "Register", "Account", null, new { @class="toplink2" })
+    @if (Session["UserID"] == null)
+    {
+        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "toplink1" })
+        @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "toplink2" })
+    }
+    else
+    {
+        @Html.ActionLink("History", "History", "Home", null, new { @class = "toplink1" })
+        @Html.ActionLink("Logout", "LogOut", "Account", null, new { @class = "toplink2" })
+    }
+
     <div class="footer">
         @RenderBody()
         <hr />

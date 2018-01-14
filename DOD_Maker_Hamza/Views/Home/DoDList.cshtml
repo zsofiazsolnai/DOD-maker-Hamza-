@@ -4,52 +4,50 @@
 }
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css">
 <script src="~/Scripts/Logic.js"></script> 
-  <form id="form1" style="background-color: #F5F5F5">
-      
-      <div id="myModalM" class="modal">
-          <div class="modal-content">
-              <span class="close" id="rad"> Accept </span>
-              <p class="modallist">
-                  <span id="OptionsArea">
-                      <!--Textboxes will be added here -->
+<form class="back" id="form1" style="background-color: #F5F5F5">
 
-                  </span>
-              </p>
-          </div>
-      </div>
+        <div id="myModalM" class="modal">
+            <div class="modal-content">
+                <span class="close" id="rad"> Accept </span>
+                <p class="modallist">
+                    <span id="OptionsArea">
+                        <!--Textboxes will be added here -->
+                    </span>
+                </p>
+            </div>
+        </div>
 
-         
-      <table align="center">
-              <caption>
-                  <h2>DoD Maker</h2>
-              </caption>
-              <tr>
-                  <th>Basic DoDs</th>
-                  <th></th>
-                  <th> My DoDs</th>
-              </tr>
-              <tr>
-                  <td>
-                      <select id="ListBox1" class="list" style="height:340px ; width: 400px" size="6" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
-                          @{
-                              int i = 0;
-                              foreach (var elem in ViewBag.Example)
-                              {
-                                  <option id="@i" draggable="true" ondragstart="drag(event)"> @elem.DODTemplate  </option>
-                                  i++;
-                              }
-                          }
-                      </select>
-                  </td>
-                  <td style="width:118px;">
-                      <input type="button" id="copyItem" value="Select" onclick="copyDOD(event)" />
-                      <input type="button" id="copyItem" value="Remove" onclick="removeDOD(event)" />
-                  </td>
+        <table align="center">
+            <caption>
+                <h1>DoD Maker</h1>
+            </caption>
+            <tr>
+                <th><h3>Basic DoDs</h3></th>
+                <th></th>
+                <th> <h3>My DoDs</h3></th>
+            </tr>
+            <tr>
+                <td>
+                    <select id="ListBox1" class="list" style="height:400px ; width: 350px" size="10" ondrop="removeDOD(event)" ondragover="allowDrop(event)">
+                        @{
+                        int i = 0;
+                        foreach (var elem in ViewBag.Example)
+                        {
+                            <option id="@i" draggable="true" ondragstart="drag(event)"> @elem.DODTemplate  </option>
+                        i++;
+                    }
+                        }
+                    </select>
+                </td>
+                <td style="width:118px;">
+                    <input type="button" class="button" id="copyItem" value="Select" onclick="copyDOD(event)" /> <br/>
+                    <input type="button" class="button" id="copyItem" value="Remove" onclick="removeDOD(event)" />
+                </td>
 
-                  <td>
-                      <select id="ListBox2" class="list" style="height:340px ; width: 400px" size="6" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
-                  </td>
-              </tr>
-          </table>
-      <input type="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
-</form>
+                <td>
+                    <select id="ListBox2" class="list" style="height:400px ; width: 350px" size="10" ondrop="copyDOD(event)" ondragover="allowDrop(event)" />
+                </td>
+            </tr>
+        </table>
+        <input type="button" class="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
+    </form>

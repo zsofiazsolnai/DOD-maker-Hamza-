@@ -1,5 +1,4 @@
-﻿
-p {
+﻿p {
     color: black;
     text-align:center;
 }
@@ -25,48 +24,51 @@ adress {
     border: 1px solid #888;
     width: 80%;
     height: 80%;
-    position:absolute;
-    left:40px;
-    top:20px;
+    position: absolute;
+    left: 40px;
+    top: 20px;
 }
 
 .close {
     color: black;
-    float: right;
+    float:right;
     font-size: 28px;
+    vertical-align:bottom;
     font-weight: bold;
+    text-decoration:underline;
 }
 
     .close:focus {
-        color: black;
+        color: gray;
         text-decoration: none;
         cursor: pointer;
     }
 
 .modallist {
+    display:block;
     color:black;
+    font-size: 16px;
+    padding-top:30px;
+    padding-left: 50px;
     text-align:left;
 }
 
-/*css navbar*/
-
 ul {
     list-style-type: none;
-    margin-top: 0px;
     padding-left: 15px;
     overflow: hidden;
     background-color: #1E588A;
-    height: 40px;
-    color:white;
-    font-size:20px;
-    text-align:center;
+    height: 60px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
 }
 
 li {
     float: left;
     text-decoration: none;
-    display:block;
     padding:5px;
+    display:inline-block;
 }
     li:hover {
         background-color: #4C91CD;
@@ -81,3 +83,22 @@ li {
    text-align: center;
    padding-bottom: 30px;
 }
+
+.button {
+    color:white;
+    font-size:18px;
+    background-color: #1E588A;
+    height: 35px;
+    width: 125px;
+}
+    .button:hover {
+        background-color: #4C91CD;
+        font-weight:bold;
+    }
+
+ td {
+        padding:10px;
+    }
+ .back{
+        padding:10px;
+    }

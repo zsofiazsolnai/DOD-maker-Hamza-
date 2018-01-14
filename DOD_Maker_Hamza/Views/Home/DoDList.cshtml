@@ -21,17 +21,16 @@
         <table align="center">
             <caption>
                 <h1>DoD Maker</h1>
-
-                <select id="projDropDown">
-                    @*
-                    <option value="-1" selected="selected">
-                        Select Project
-                    </option>*@
-                    @foreach (var proj in ViewBag.Projects)
-                    {
-                    <option value="@proj.AvailableProjectID">@proj.AvailableProjectName</option>
-                    }
-                </select>
+                @if (Session["UserID"] != null)
+                {
+                    <select id="projDropDown">
+                        
+                        @foreach (var proj in ViewBag.Projects)
+                        {
+                            <option value="@proj.AvailableProjectID">@proj.AvailableProjectName</option>
+                        }
+                    </select>
+                }
             </caption>
             <tr>
                 <th><h3>Basic DoDs</h3></th>
@@ -61,7 +60,10 @@
                 </td>
             </tr>
         </table>
-        <input type="button" class="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
+        @if (Session["UserID"] != null)
+        {
+            <input type="button" class="button" id="save" value="Save Dod's" onclick="saveOnClick()" />
+        }
 
         <input type="button" class="button" id="export" value="Export to PDF" onclick="exportToPDF()" />
 </form>

@@ -151,6 +151,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -167,6 +168,10 @@
     <Compile Include="Migrations\201712091936375_savingMyDODs.Designer.cs">
       <DependentUpon>201712091936375_savingMyDODs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801132047384_UserTable.cs" />
+    <Compile Include="Migrations\201801132047384_UserTable.Designer.cs">
+      <DependentUpon>201801132047384_UserTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DODdbContext.cs" />
     <Compile Include="Models\DODTemplates.cs" />
@@ -174,6 +179,7 @@
     <Compile Include="Models\DOD_Template_Type.cs" />
     <Compile Include="Models\DOD_Type.cs" />
     <Compile Include="Models\MyDODs.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +206,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\Logic.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
@@ -224,6 +231,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Home\DoDList.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -250,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712091936375_savingMyDODs.resx">
       <DependentUpon>201712091936375_savingMyDODs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801132047384_UserTable.resx">
+      <DependentUpon>201801132047384_UserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

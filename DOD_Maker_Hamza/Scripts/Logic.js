@@ -98,7 +98,12 @@ function rad(x, nodeCopy) {
         modal.style.display = "none";
         for (var i = 0; i < dodText.length; i++) {
             if (dodText[i].startsWith("#") || dodText[i].startsWith("$")) {
-                DODTEXT = DODTEXT.concat(getValuesfromOptions(dodText[i][1]));
+                var response = getValuesfromOptions(dodText[i][1]);
+                if (!response) {
+                    alert("Please provide input if you want to select this option");
+                    return;
+                }
+                DODTEXT = DODTEXT.concat(response);
             }
             else if (dodText[i].startsWith("@")) {
                 var value = document.getElementById("param" + dodText[i][1]).value;
@@ -131,6 +136,9 @@ function getValuesfromOptions(id) {
                 var name = "inputopt" + id + "" + x + "";
                 var optWithParamValue = document.getElementById("optWithParamValue" + id + "" + x).value;
                 var userInput = document.getElementById(name).value
+                if (userInput == null || userInput == "") {
+                    return false;
+                }
                 selectedOpt = optWithParamValue.replace("*", userInput);
             }
         }

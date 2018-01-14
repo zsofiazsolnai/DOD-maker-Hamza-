@@ -63,10 +63,11 @@ namespace DOD_Maker_Hamza.Controllers
 
         }
 
-        public void getType(int TemplateID)
+        public List<DOD_Option> getType(int TemplateID)
         {
             DODdbContext db = new DODdbContext();
             List<DOD_Option> templateType = db.DOD_Option.Where(type => type.DODTemplateID == TemplateID).ToList();
+            return templateType;
         }
 
         public void saveMyDODs(string[] dodList, string name)

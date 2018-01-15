@@ -107,9 +107,13 @@ li {
     position: absolute;
     left: 90%;
     top: 15px;
+    
 }
     .toplink1:hover {
         color:white;
+    }
+    .toplink1:visited {
+        color: white;
     }
 .toplink2 {
     color: white;
@@ -120,6 +124,9 @@ li {
 }
 
     .toplink2:hover {
+        color: white;
+    }
+    .toplink2:visited {
         color: white;
     }
 
@@ -194,3 +201,7 @@ li {
     color:white;
     text-decoration:underline;
 }
+    .btn:visited {
+        color: white;
+        background-color: rgba(30,88,138,0.75);
+    }

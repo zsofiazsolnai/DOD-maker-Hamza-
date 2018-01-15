@@ -69,6 +69,7 @@ function exportToPDF() {
     var pdfInMM = 300;  // width of A4 in mm
     var doc = new jsPDF("p", "mm", "a4");
     var options = document.getElementById("ListBox2").options;
+    var text = "";
 
     if (options.length == 0) {
         alert("No DOD is available to export");
@@ -79,9 +80,7 @@ function exportToPDF() {
         }
         doc.setFontSize(20);
         doc.text(lMargin, 20, 'Definition of Done');
-
-        var text = "";
-
+        
         var lines = doc.splitTextToSize(text, (pdfInMM - lMargin - rMargin));
         doc.setFontSize(14);
         doc.text(lMargin, 30, lines);
@@ -89,6 +88,9 @@ function exportToPDF() {
         doc.save('DOD.pdf');
     }
 }
+
+var checkInputProvided = true;
+var checkIfNoOptSlected = false;
 
 function rad(x, nodeCopy) {
     var modal = document.getElementById('myModalM');
@@ -98,8 +100,8 @@ function rad(x, nodeCopy) {
         modal.style.display = "none";
         for (var i = 0; i < dodText.length; i++) {
             if (dodText[i].startsWith("#") || dodText[i].startsWith("$")) {
-                var response = getValuesfromOptions(dodText[i][1]);
-                if (!response) {
+                var response = getValuesfromOptions(dodText[i][1], dodText[i][0]);
+                if (checkInputProvided == false || checkIfNoOptSlected == true) {
                     alert("Please provide input if you want to select this option");
                     return;
                 }
@@ -125,11 +127,15 @@ function rad(x, nodeCopy) {
     }
 }
 
-function getValuesfromOptions(id) {
+function getValuesfromOptions(id, type) {
     var selectedOpt = "";
     var radioButtons = document.getElementsByName("option" + id);
+    if (type == "#") {
+        checkIfNoOptSlected = true;
+    }
     for (var x = 0; x < radioButtons.length; x++) {
         if (radioButtons[x].checked) {
+            checkIfNoOptSlected = false;
             if (radioButtons[x].value != ""){
                 selectedOpt = radioButtons[x].value;
             }
@@ -138,7 +144,10 @@ function getValuesfromOptions(id) {
                 var optWithParamValue = document.getElementById("optWithParamValue" + id + "" + x).value;
                 var userInput = document.getElementById(name).value
                 if (userInput == null || userInput == "") {
-                    return false;
+                    checkInputProvided = false;
+                }
+                else {
+                    checkInputProvided = true;
                 }
                 selectedOpt = optWithParamValue.replace("*", userInput);
             }
